@@ -12,9 +12,10 @@ y = data[['Rings']]
 cross_validation = KFold(n_splits=5, shuffle=True, random_state=1)
 clf = RandomForestRegressor(n_estimators=1, random_state=1)
 
-train = cross_validation.split(X, y)
+train_generator = cross_validation.split(X)
 # clf.fit(train, test)
 # predictions = clf.predict(train)
 
-print(list(train))
+train_batch, test_batch = next(train_generator)
+print(len(train_batch), len(test_batch))
 # print(r2_score([2, 3.1], [2, 3]))
